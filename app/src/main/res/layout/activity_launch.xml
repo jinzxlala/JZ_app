@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:id="@+id/launch"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDarkGreen1"
   >
 
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:layout_marginTop="50dp"
-        android:text="大学是一场有去无回的旅行"
+        android:text="Save money and get a better life"
         android:textSize="13dp"/>
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:gravity="center_horizontal"
-        android:text="好的坏的都是风景"
+        android:text="Effort pay back"
         android:textSize="13dp"/>
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:gravity="center_horizontal"
-        android:text="——Miss You"
+        android:text="——Elder says"
         android:textSize="13dp"/>
 
 
