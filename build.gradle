@@ -19,7 +19,7 @@ buildscript {
         maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 //        implementation 'com.android.support:multidex:1.0.3'
     }
