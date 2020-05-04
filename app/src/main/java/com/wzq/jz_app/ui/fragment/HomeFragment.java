@@ -141,6 +141,9 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
             NoteBean note = new Gson().fromJson(Constants.BILL_NOTE, NoteBean.class);
             List<BSort> sorts = note.getOutSortlis();
             sorts.addAll(note.getInSortlis());
+            LocalRepository.getInstance().deleteAllBills();
+            LocalRepository.getInstance().deleteBillSorts();
+            LocalRepository.getInstance().deleteBillPays();
             LocalRepository.getInstance().saveBsorts(sorts);
             LocalRepository.getInstance().saveBPays(note.getPayinfo());
         }

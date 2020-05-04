@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tb_outcome_selector"
-                android:text="支出"
+                android:text="Outcome"
                 android:textColor="@drawable/tb_text_selector"
                 android:textSize="15sp" />
 
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tb_note_outcome"
                 android:background="@drawable/tb_income_selector"
-                android:text="收入"
+                android:text="@string/income"
                 android:textColor="@drawable/tb_text_selector"
                 android:textSize="15sp" />
         </RelativeLayout>

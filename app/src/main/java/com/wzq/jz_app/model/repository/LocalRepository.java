@@ -182,6 +182,8 @@ public class LocalRepository {
     }
 
 
+
+
     /******************************update**************************************/
 
     /**
@@ -231,12 +233,25 @@ public class LocalRepository {
     }
 
     /**
+     * 批量删除账单分类
+     */
+    public void deleteBillSorts() {
+        List<BSort> tmp = mSession.getBSortDao().queryBuilder().list();
+        mSession.getBSortDao().deleteInTx(tmp);
+    }
+
+    /**
      * 删除账单支出方式
      *
      * @param id
      */
     public void deleteBPayById(Long id) {
         mSession.getBPayDao().deleteByKey(id);
+    }
+
+    public void deleteBillPays() {
+        List<BPay> tmp = mSession.getBPayDao().queryBuilder().list();
+        mSession.getBPayDao().deleteInTx(tmp);
     }
 
     /**
