@@ -56,6 +56,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,10 +65,6 @@ import java.util.List;
 import cn.bmob.v3.BmobUser;
 import me.drakeet.multitype.MultiTypeAdapter;
 
-/**
- * 作者：wzq
- * 邮箱：wang_love152@163.com
- */
 public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
         implements MonthChartContract.View, OnChartValueSelectedListener, View.OnClickListener {
 
@@ -93,9 +90,9 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
     private
     ArrayList<Integer> colors = new ArrayList<>();
 
-    private boolean TYPE = true;//默认总收入true
+    private boolean TYPE = true;// Default total revenue true
     private List<MonthChartBean.SortTypeList> tMoneyBeanList;
-    private String sort_image;//饼状图与之相对应的分类图片地址
+    private String sort_image;//the classification picture corresponding to the pie chart
     private String sort_name;
     private String back_color;
     private String advice;
@@ -155,7 +152,7 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
     }
 
     public void changeDate1(String start, String end) {
-        chart_date.setText(start + "到" + end);
+        chart_date.setText(start + " to " + end);
         mPresenter.getMonthChart(MyApplication.getCurrentUserId(), start, end, "0");
     }
 
@@ -175,7 +172,7 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
         chart_date_year = getViewById(R.id.date_chart_year);
 
 
-        //设置日期选择器初始日期
+        //set the initial date of the date picker
         mYear = Integer.parseInt(DateUtils.getCurYear(DateUtils.FORMAT_Y));
         mMonth = Integer.parseInt(DateUtils.getCurMonth(DateUtils.FORMAT_M));
         mDay = Integer.parseInt(DateUtils.getCurDay(DateUtils.FORMAT_D));
@@ -277,12 +274,12 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                     String start = startTime.getText().toString();
                     String end = endTime.getText().toString();
                     if (start.contains("时间") || end.contains("时间")) {
-                        Toast.makeText(getActivity(), "请先选择时间区间", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please select a time interval first", Toast.LENGTH_SHORT).show();
                     } else {
                         changeDate1(start, end);
                     }
                 } else {
-                    Toast.makeText(getActivity(), "请先选择时间区间", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please select a time interval first", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -444,12 +441,12 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                 YoyListEntity yoyListEntity = new YoyListEntity();
                 realListEntity.setAmount(totalMoneyIn[i] + "");//收入
                 realListEntity.setMonth((i + 1) + "");
-                realListEntity.setYear("收入");
+                realListEntity.setYear(" in: ");
                 realList.add(realListEntity);
 
                 yoyListEntity.setAmount(totalMoneyOut[i] + "");//支出
                 yoyListEntity.setMonth((i + 1) + "");
-                yoyListEntity.setYear("支出");
+                yoyListEntity.setYear(" out: ");
                 yoyList.add(yoyListEntity);
 
 
@@ -464,23 +461,25 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                     maxOut = totalMoneyOut[i];
                     timeOut = i + 1;
                 }
+
+
             }
             if (endIn == 0 && endOut == 0) {
-                advice = "您当前没有账单记录！请开始使用APP记账吧！";
+                advice = "You have no billing records!";
                 //年度分析
                 TextView textView = getViewById(R.id.sys);
-                textView.setText("分析：" + advice);
+                textView.setText(advice);
             } else {
                 if (endOut > endIn)
-                    advice = "收支不平衡【入不敷出】,建议您省吃俭用，少花钱！";
+                    advice = "Unbalanced revenue and expenditure. Next please be frugal.";
                 else if (endIn == endOut) {
-                    advice = "收支平衡【没有存款】，建议您合理消费";
+                    advice = "You are currently in balance, but there is no deposit, it is recommended that you spend reasonably. ";
                 } else {
-                    advice = "收支不平衡【您有存款了】，建议您享受生活，适当理财";
+                    advice = "You currently have a deposit, it is recommended that you enjoy your life and manage your finances appropriately.";
                 }
                 //年度分析
                 TextView textView = getViewById(R.id.sys);
-                textView.setText("分析：当前年度中" + timeIn + "月收入最高，" + timeOut + "月消费最高!" + advice);
+                textView.setText(advice);
             }
             initViews();
         } catch (Exception e) {
@@ -530,7 +529,7 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                 ContextCompat.getDrawable(getActivity(), R.drawable.chart_thisyear_blue),
                 ContextCompat.getDrawable(getActivity(), R.drawable.chart_callserice_call_casecount)
         };
-        int[] callDurationColors = {Color.parseColor("#45A2FF"), Color.parseColor("#5fd1cc")};
+        int[] callDurationColors = {Color.parseColor("#45A2FF"), Color.parseColor("#4CAF50")};
         String thisYear = "";
         if (realList.size() > 0) {
             thisYear = realList.get(0).getYear();
@@ -579,7 +578,7 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                     @Override
                     public String getFormattedValue(float value, AxisBase axis) {
                         if (value == 1.0f) {
-                            return mFormat.format(value) + "月";
+                            return mFormat.format(value);
                         }
                         String monthStr = mFormat.format(value);
                         if (monthStr.contains(".")) {
@@ -616,16 +615,33 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
                     return;
                 }
                 String textTemp = "";
+                String idx = "";
+
+                switch(index){
+                    case 1 : idx = "Jan";break;
+                    case 2 : idx = "Feb";break;
+                    case 3 : idx = "Mar";break;
+                    case 4 : idx = "Apr";break;
+                    case 5 : idx = "May";break;
+                    case 6 : idx = "Jun";break;
+                    case 7 : idx = "Jul";break;
+                    case 8 : idx = "Aug";break;
+                    case 9 : idx = "Sep";break;
+                    case 10 : idx = "Oct";break;
+                    case 11 : idx = "Nov";break;
+                    case 12 : idx = "Dec";break;
+                    default : idx = "Unknown";
+                }
 
                 if (index <= yoyList.size()) {
                     if (!StringUtils.isEmpty(textTemp)) {
                     }
-                    textTemp += index + "月" + yoyList.get(index - 1).getYear() + "  " + mFormat.format(Float.parseFloat(yoyList.get(index - 1).getAmount())) + unit + "元";
+                    textTemp += idx + yoyList.get(index - 1).getYear() + "  " + mFormat.format(Float.parseFloat(yoyList.get(index - 1).getAmount())) + unit;
                 }
 
                 if (index <= realList.size()) {
                     textTemp += "\n";
-                    textTemp += index + "月" + realList.get(index - 1).getYear() + "  " + mFormat.format(Float.parseFloat(realList.get(index - 1).getAmount())) + unit + "元";
+                    textTemp += idx + realList.get(index - 1).getYear() + "  " + mFormat.format(Float.parseFloat(realList.get(index - 1).getAmount())) + unit;
                 }
                 markerView.getTvContent().setText(textTemp);
             }
@@ -662,12 +678,12 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
 
         float totalMoney;
         if (TYPE) {
-            centerTitle.setText("总支出");
+            centerTitle.setText("Total Expenses");
             centerImg.setImageResource(R.mipmap.tallybook_output);
             tMoneyBeanList = monthChartBean.getOutSortlist();
             totalMoney = monthChartBean.getTotalOut();
         } else {
-            centerTitle.setText("总收入");
+            centerTitle.setText("Total Revenue");
             centerImg.setImageResource(R.mipmap.tallybook_input);
             tMoneyBeanList = monthChartBean.getInSortlist();
             totalMoney = monthChartBean.getTotalIn();
@@ -726,7 +742,7 @@ public class ChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
         }
         DecimalFormat df = new DecimalFormat("0.00%");
         title.setText(sort_name+" : "+df.format(value));
-        rankTitle.setText(sort_name + "排行榜");
+        rankTitle.setText(sort_name + " rank");
         circleBg.setImageDrawable(new ColorDrawable(colors.get(index)));//背景色
         circleImg.setImageDrawable(PieChartUtils.getDrawable(tMoneyBeanList.get(index).getSortImg()));
         adapter.setItems(tMoneyBeanList.get(index).getList());
