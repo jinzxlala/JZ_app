@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">家庭记账</string>
+    <string name="app_name">Accounting assistant</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
     <!-- main activity -->
-    <string name="first_title">明细</string>
-    <string name="second_title">记一笔</string>
-    <string name="third_title">报表</string>
-    <string name="four_title">账户</string>
+    <string name="first_title">details</string>
+    <string name="second_title">add some...</string>
+    <string name="third_title">chart</string>
+    <string name="four_title">account</string>
 
-    <string name="tab_one">账单</string>
-    <string name="tab_two">图表</string>
-    <string name="tab_three">日历</string>
-    <string name="tab_four">我的</string>
+    <string name="tab_one">bills</string>
+    <string name="tab_two">chart</string>
+    <string name="tab_three">calender</string>
+    <string name="tab_four">mine</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -25,7 +25,7 @@
     <string name="register_password">I can keep secret!</string>
 
     <!--about activity-->
-    <string name="about">关于APP</string>
+    <string name="about">about APP</string>
     <string name="about_introduce">家庭记账APP\n\n
 
         ------APP主要功能--------\n\n

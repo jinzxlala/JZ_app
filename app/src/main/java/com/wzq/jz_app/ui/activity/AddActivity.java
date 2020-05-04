@@ -259,11 +259,11 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
      */
     public void showPayinfoSelector() {
         new MaterialDialog.Builder(mContext)
-                .title("选择支付方式")
+                .title("choose pay type")
                 .titleGravity(GravityEnum.CENTER)
                 .items(cardItems)
-                .positiveText("确定")
-                .negativeText("取消")
+                .positiveText("OK")
+                .negativeText("cancel")
                 .itemsCallbackSingleChoice(selectedPayinfoIndex, (dialog, itemView, which, text) -> {
                     selectedPayinfoIndex = which;
                     cashTv.setText(cardItems.get(which));
@@ -309,18 +309,19 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
     public void showContentDialog() {
 
         new MaterialDialog.Builder(this)
-                .title("备注")
+                .title("remark")
                 .inputType(InputType.TYPE_CLASS_TEXT)
                 .inputRangeRes(0, 200, R.color.textRed)
-                .input("写点什么", remarkInput, (dialog, input) -> {
+                .input("write something", remarkInput, (dialog, input) -> {
+//                    System.out.println(input);
                     if (input.equals("")) {
-                        Toast.makeText(getApplicationContext(), "内容不能为空！" + input,
+                        Toast.makeText(getApplicationContext(), "The content cannot be empty!" + input,
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         remarkInput = input.toString();
                     }
                 })
-                .positiveText("确定")
+                .positiveText("OK")
                 .show();
     }
 
@@ -454,21 +455,22 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
         List<BSort> tempData = new ArrayList<>();
         tempData.addAll(mDatas);
         //末尾加上添加选项
-        tempData.add(new BSort(null, "添加", "sort_tianjia.png", 0, 0, null));
+        tempData.add(new BSort(null, "add", "sort_tianjia.png", 0, 0, null));
         if (tempData.size() % 15 == 0)
             isTotalPage = true;
-        page = (int) Math.ceil(tempData.size() * 1.0 / 15);
+        int itemPerPage = 10;
+        page = (int) Math.ceil(tempData.size() * 1.0 / itemPerPage);
         for (int i = 0; i < page; i++) {
             tempList = new ArrayList<>();
             View view = inflater.inflate(R.layout.item_tb_type_page, null);
             RecyclerView recycle = view.findViewById(R.id.pager_type_recycle);
             if (i != page - 1 || (i == page - 1 && isTotalPage)) {
-                for (int j = 0; j < 15; j++) {
-                    tempList.add(tempData.get(i * 15 + j));
+                for (int j = 0; j < 5; j++) {
+                    tempList.add(tempData.get(i * itemPerPage + j));
                 }
             } else {
-                for (int j = 0; j < tempData.size() % 15; j++) {
-                    tempList.add(tempData.get(i * 15 + j));
+                for (int j = 0; j < tempData.size() % itemPerPage; j++) {
+                    tempList.add(tempData.get(i * itemPerPage + j));
                 }
             }
 
@@ -477,7 +479,7 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
                 @Override
                 public void OnClick(int index) {
                     //获取真实index
-                    index = index + viewpagerItem.getCurrentItem() * 15;
+                    index = index + viewpagerItem.getCurrentItem() * 10;
                     if (index == mDatas.size()) {
                         //修改分类
                         Intent intent = new Intent(mContext, SortActivity.class);
@@ -492,7 +494,7 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
 
                 @Override
                 public void OnLongClick(int index) {
-                    Toast.makeText(AddActivity.this, "长按", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddActivity.this, "Hold on...", Toast.LENGTH_SHORT).show();
                 }
             });
             GridLayoutManager layoutManager = new GridLayoutManager(this, 5);

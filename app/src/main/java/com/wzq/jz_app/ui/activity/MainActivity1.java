@@ -62,7 +62,7 @@ public class MainActivity1 extends BaseActivity {
     @Override
     protected void initWidget() {
         super.initWidget();
-        test();
+//        test();
         currentUser = BmobUser.getCurrentUser(MyUser.class);
         //判断是否登录，登录则将未登录的账单
         if(currentUser!=null){
@@ -284,7 +284,7 @@ public class MainActivity1 extends BaseActivity {
 
     public void exit() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            Toast.makeText(MainActivity1.this, "再点一次，返回桌面", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity1.this, "Click again to return to desktop", Toast.LENGTH_SHORT).show();
             mExitTime = System.currentTimeMillis();
         } else {
 //            MyConfig.clearSharePre(this, "users");
@@ -312,37 +312,37 @@ public class MainActivity1 extends BaseActivity {
     /**
      * 新闻列表
      */
-    private void test() {
-        MyApplication.application.getApiService().test().compose
-                (new IoMainScheduler<>()).subscribe(new Observer<NewsBean>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                Toast toast = Toast.makeText(getApplicationContext(), "加载数据", Toast.LENGTH_SHORT);
-
-            }
-
-            @Override
-            public void onNext(NewsBean responseBody) {
-                if (responseBody != null) {
-                    preferences = getSharedPreferences("test", MODE_PRIVATE);
-                    editor = preferences.edit();
-                    Gson gson=new Gson();
-                    String result=gson.toJson(responseBody);
-                    editor.putString("mode",result);
-                    editor.commit();
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
-    }
+//    private void test() {
+//        MyApplication.application.getApiService().test().compose
+//                (new IoMainScheduler<>()).subscribe(new Observer<NewsBean>() {
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//                Toast toast = Toast.makeText(getApplicationContext(), "加载数据", Toast.LENGTH_SHORT);
+//
+//            }
+//
+//            @Override
+//            public void onNext(NewsBean responseBody) {
+//                if (responseBody != null) {
+//                    preferences = getSharedPreferences("test", MODE_PRIVATE);
+//                    editor = preferences.edit();
+//                    Gson gson=new Gson();
+//                    String result=gson.toJson(responseBody);
+//                    editor.putString("mode",result);
+//                    editor.commit();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//
+//            }
+//        });
+//    }
 
 }
