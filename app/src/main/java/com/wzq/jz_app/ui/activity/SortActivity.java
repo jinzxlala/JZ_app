@@ -45,6 +45,7 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
 
     private NoteBean noteBean;
     private List<BSort> mDatas;
+    protected String newTypeInput="";
 
     /**************************************************************************/
     @Override
@@ -109,10 +110,10 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
                 final BSort item = mDatas.get(index);
                 //侧滑事件
                 new MaterialDialog.Builder(mContext)
-                        .title("确定删除此分类")
-                        .content("删除后该分类下的账单会继续保留")
-                        .positiveText("确定")
-                        .negativeText("取消")
+                        .title("Sure to delete this bill type?")
+                        .content("The bill will exist after delete this type")
+                        .positiveText("OK")
+                        .negativeText("Cancel")
                         .onPositive(((dialog, which) -> {
                             //删除账单分类
                             mPresenter.deleteBSortByID(mDatas.get(index).getId());
@@ -216,22 +217,27 @@ public class SortActivity extends BaseMVPActivity<BillNoteContract.Presenter>
      */
     public void showContentDialog() {
 
-        final String[] content = new String[1];
+        newTypeInput = "";
         new MaterialDialog.Builder(this)
-                .title("添加分类")
+                .title("Add new type")
+                .positiveText("OK")
+                .onPositive((dialog, which) -> {
+
+                })
+                .negativeText("Cancel")
                 .inputType(InputType.TYPE_CLASS_TEXT)
                 .inputRangeRes(0, 200, R.color.textRed)
-                .input("分类名称", null, (dialog, input) -> {
-                    content[0] =input.toString();
-                })
-                .positiveText("确定")
-                .onPositive((dialog, which) -> {
-                    if (TextUtils.isEmpty(content[0])) {
-                        ToastUtils.show(mContext,"内容不能为空！请重新添加");
+                .input("name of type", null, false, (dialog, input) -> {
+                    newTypeInput =input.toString();
+                    System.out.println("input:" + input.toString());
+                    System.out.println("newTypeInput:" + newTypeInput);
+                    if (newTypeInput.equals("")) {
+                        ToastUtils.show(mContext,"cannot input empty string!");
                     } else {
-                        BSort sort = new BSort(null, content[0], "sort_tianjiade.png",mDatas.size(),0, !isOutcome);
+                        BSort sort = new BSort(null, newTypeInput, "sort_tianjiade.png",mDatas.size(),0, !isOutcome);
                         mPresenter.addBSort(sort);
                         mDatas.add(sort);
+                        ToastUtils.show(mContext,"add new type success");
                     }
                 })
                 .show();

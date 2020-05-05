@@ -332,9 +332,9 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
         final SimpleDateFormat sdf = new SimpleDateFormat(" HH:mm:ss");
         final String crDate = days + sdf.format(new Date());
         if ((num + dotNum).equals("0.00")) {
-            Toast.makeText(this, "请输入金额", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please input number", Toast.LENGTH_SHORT).show();
             return;}
-        ProgressUtils.show(mContext, "正在提交...");
+        ProgressUtils.show(mContext, "uploading...");
         BBill bBill;
         if (isEdit) {
             bBill = new BBill(bundle.getLong("id"), bundle.getString("rid"),
@@ -455,17 +455,17 @@ public class AddActivity extends BaseMVPActivity<BillContract.Presenter>
         List<BSort> tempData = new ArrayList<>();
         tempData.addAll(mDatas);
         //末尾加上添加选项
-        tempData.add(new BSort(null, "add", "sort_tianjia.png", 0, 0, null));
-        if (tempData.size() % 15 == 0)
-            isTotalPage = true;
         int itemPerPage = 10;
+        tempData.add(new BSort(null, "add", "sort_tianjia.png", 0, 0, null));
+        if (tempData.size() % itemPerPage == 0)
+            isTotalPage = true;
         page = (int) Math.ceil(tempData.size() * 1.0 / itemPerPage);
         for (int i = 0; i < page; i++) {
             tempList = new ArrayList<>();
             View view = inflater.inflate(R.layout.item_tb_type_page, null);
             RecyclerView recycle = view.findViewById(R.id.pager_type_recycle);
             if (i != page - 1 || (i == page - 1 && isTotalPage)) {
-                for (int j = 0; j < 5; j++) {
+                for (int j = 0; j < itemPerPage; j++) {
                     tempList.add(tempData.get(i * itemPerPage + j));
                 }
             } else {
