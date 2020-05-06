@@ -28,7 +28,7 @@
             android:layout_marginStart="11dp"
             android:layout_toEndOf="@+id/item_img"
             android:layout_toRightOf="@+id/item_img"
-            android:text="消费类型"
+            android:text="Type"
             android:textColor="@color/text_black3"
             android:textSize="14sp" />
 
@@ -79,7 +79,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="@color/material_grey_600"
-            android:text="编辑"
+            android:text="Edit"
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
@@ -88,7 +88,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="@color/text_red"
-            android:text="删除"
+            android:text="Delete"
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
