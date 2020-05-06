@@ -73,17 +73,9 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
     private List<MonthListBean.DaylistBean> list = null;
     private SwipeRefreshLayout swipe;//下拉刷新
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private DrawerLayout drawer;
     private TextView tOutcome;
     private TextView tIncome;
     private TextView tTotal;
-
-    private View drawerHeader;
-    private ImageView drawerIv;
-    private TextView drawerTvAccount, drawerTvMail;
 
     protected static final int USERINFOACTIVITY_CODE = 0;
     protected static final int LOGINACTIVITY_CODE = 1;
@@ -206,7 +198,7 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
         date.setOnClickListener(v -> {
             currentUser = BmobUser.getCurrentUser(MyUser.class);
             new TimePickerBuilder(mContext, (Date date, View vc) -> {
-                time_year.setText(DateUtils.date2Str(date, "yyyy") + "年");
+                time_year.setText(DateUtils.date2Str(date, "yyyy"));
                 time_month.setText(DateUtils.date2Str(date, "MM"));
                 changeDate(DateUtils.date2Str(date, "yyyy"), DateUtils.date2Str(date, "MM"));
             }).setType(new boolean[]{true, true, false, false, false, false})
@@ -250,11 +242,12 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
     @Override
     protected void processLogic() {
         super.processLogic();
-        //请求当月数据
+        // Request this a month billing data
         mPresenter.getMonthList(MyApplication.getCurrentUserId(), setYear, setMonth);
+        // Request all billing data
         mPresenter.getMonthList1(MyApplication.getCurrentUserId());
-        //初始化筛选时间
-        time_year.setText(setYear + "年");
+        // Initialize the display data
+        time_year.setText(setYear);
         time_month.setText(setMonth);
     }
 
@@ -277,6 +270,7 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
         return new MonthListPresenter();
     }
 
+    // loadDataSuccess can get this month's billing from data repository by userid
     @Override
     public void loadDataSuccess(MonthListBean monthListBean) {
         list = monthListBean.getDaylist();
@@ -288,6 +282,8 @@ public class HomeFragment extends BaseMVPFragment<MonthListContract.Presenter>
         tTotal.setText(monthListBean.getT_total());
     }
 
+    // loadDataSuccess1 can get all billing from data repository by userid, and thus
+    // is used to calculate all income and expenditure
     @Override
     public void loadDataSuccess1(MonthListBean list) {
         tvall.setText(list.getT_income());

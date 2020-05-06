@@ -30,32 +30,34 @@
                 android:id="@+id/top_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2019年"
+                android:text="2020"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="14sp"
                 android:singleLine="true"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <TextView
-            android:id="@+id/top_month"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="04"
-            android:textColor="@color/textWhite"
-            android:textSize="18sp"
-            android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/top_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:text="05"
+                android:textColor="@color/textWhite"
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="0dp"
-                android:layout_gravity="center_vertical"
                 android:src="@drawable/date_bottom" />
 
         </LinearLayout>
@@ -85,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="支出(元)"
+                    android:text="Expenditure"
                     android:layout_marginLeft="2dp"
                     android:textColor="@color/textWhite"
                     android:textSize="14sp"
@@ -126,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收入(元)"
+                android:text="Income"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="14sp"
@@ -162,7 +164,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="结余(元)"
+            android:text="Balance"
             android:textColor="@color/textWhite"
             android:textSize="14sp"
             android:singleLine="true"/>
@@ -202,15 +204,16 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                android:text="总收入："/>
+                android:text="Total Income："/>
+
             <TextView
                 android:id="@+id/tv_all"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                tools:text="10000元"/>
+                tools:text="$10000" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -225,7 +228,7 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                android:text="支出："/>
+                android:text="Total Expenditure："/>
             <TextView
                 android:id="@+id/tv_allout"
                 android:layout_width="wrap_content"
@@ -233,7 +236,7 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                tools:text="10000元"/>
+                tools:text="$10000"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -247,7 +250,7 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                android:text="资产："/>
+                android:text="Assets："/>
             <TextView
                 android:id="@+id/tv_allin"
                 android:layout_width="wrap_content"
@@ -255,7 +258,7 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/textWhite"
                 android:textSize="12sp"
-                tools:text="10000元"/>
+                tools:text="$10000"/>
         </LinearLayout>
     </LinearLayout>
 

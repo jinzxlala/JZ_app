@@ -82,7 +82,7 @@ public class MonthListAdapter extends StickyHeaderGridAdapter {
     @Override
     public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int itemType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_monthlist_item, parent, false);
-        return new MyItemViewHolder(view);
+        return new MonthItemViewHolder(view);
     }
 
     @Override
@@ -94,7 +94,8 @@ public class MonthListAdapter extends StickyHeaderGridAdapter {
 
     @Override
     public void onBindItemViewHolder(ItemViewHolder viewHolder, final int section, final int position) {
-        final MyItemViewHolder holder = (MyItemViewHolder) viewHolder;
+        // An ItemviewHolder is an item in a RecycleView
+        final MonthItemViewHolder holder = (MonthItemViewHolder) viewHolder;
 
         BBill bBill = mDatas.get(section).getList().get(position);
         holder.item_title.setText(bBill.getSortName());
@@ -105,35 +106,35 @@ public class MonthListAdapter extends StickyHeaderGridAdapter {
             holder.item_money.setText("-" + bBill.getCost());
         }
 
-        //监听侧滑删除事件
+        // Listen on side swipe and edit
         holder.item_delete.setOnClickListener(v -> {
             final int section1 = getAdapterPositionSection(holder.getAdapterPosition());
             final int offset1 = getItemSectionOffset(section1, holder.getAdapterPosition());
 
-            new AlertDialog.Builder(mContext).setTitle("是否删除此条记录")
-                    .setNegativeButton("取消", null)
-                    .setPositiveButton("确定", (dialog, which) -> {
+            new AlertDialog.Builder(mContext).setTitle("Be sure to delete this record?")
+                    .setNegativeButton("Cancle", null)
+                    .setPositiveButton("Sure", (dialog, which) -> {
                         onStickyHeaderClickListener
                                 .OnDeleteClick(mDatas.get(section1).getList().get(offset1), section1, offset1);
                     })
                     .show();
         });
 
-        //监听侧滑编辑事件
+        // Listen on side swipe and edit
         holder.item_edit.setOnClickListener(v -> {
             final int section1 = getAdapterPositionSection(holder.getAdapterPosition());
             final int offset1 = getItemSectionOffset(section1, holder.getAdapterPosition());
             onStickyHeaderClickListener.OnEditClick(
                     mDatas.get(section1).getList().get(offset1), section1, offset1);
         });
-        //监听单击显示详情事件
+        // Listen on clicking
         holder.item_layout.setOnClickListener(v -> {
             new MaterialDialog.Builder(mContext)
                     .title(bBill.getSortName())
-                    .content("\t\t" + Math.abs(bBill.getCost()) + "元\n\t\t" + bBill.getContent()
-                            +"\n\n\t\t"+ DateUtils.long2Str(bBill.getCrdate(), DateUtils.FORMAT_YMD_CN)
-                            +"\n\t\t"+DateUtils.long2Str(bBill.getCrdate(), DateUtils.FORMAT_HMS_CN))
-                    .positiveText("知道了")
+                    .content("\t\t" + "$" + Math.abs(bBill.getCost()) + "\n\t\t" + bBill.getContent()
+                            +"\n\n\t\t"+ DateUtils.long2Str(bBill.getCrdate(), DateUtils.FORMAT_YMD)
+                            +"\n\t\t"+DateUtils.long2Str(bBill.getCrdate(), DateUtils.FORMAT_HM))
+                    .positiveText("Got it!")
                     .icon(ImageUtils.getDrawable(bBill.getSortImg()))
                     .limitIconToDefaultSize()
                     .show();
@@ -160,7 +161,7 @@ public class MonthListAdapter extends StickyHeaderGridAdapter {
         }
     }
 
-    public static class MyItemViewHolder extends ItemViewHolder {
+    public static class MonthItemViewHolder extends ItemViewHolder {
         TextView item_title;
         TextView item_money;
         Button item_delete;
@@ -169,7 +170,7 @@ public class MonthListAdapter extends StickyHeaderGridAdapter {
         RelativeLayout item_layout;
         SwipeMenuView mSwipeMenuView;
 
-        MyItemViewHolder(View itemView) {
+        MonthItemViewHolder(View itemView) {
             super(itemView);
             item_title = itemView.findViewById(R.id.item_title);
             item_money = itemView.findViewById(R.id.item_money);

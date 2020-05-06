@@ -16,7 +16,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="家庭记账"
+            android:text="ACCOUNTING"
             android:gravity="center_horizontal"
             android:textSize="20dp"
             android:layout_marginTop="10dp"

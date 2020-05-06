@@ -43,6 +43,11 @@ public class DateUtils {
     public static String FORMAT_HM = "HH:mm";
 
     /**
+     * 英文简写如：12:01
+     */
+    public static String FORMAT_HMS = "HH:mm:ss";
+
+    /**
      * 英文简写如：1-12 12:01
      */
     public static String FORMAT_MDHM = "MM-dd HH:mm";

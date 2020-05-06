@@ -70,7 +70,7 @@
                 style="@style/main_tab_bottom"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/footer_home_selector"
-                android:text="账 单"
+                android:text="Bill"
                 android:button="@null"
                 android:checked="true"
                 android:textColor="@color/black"/>
