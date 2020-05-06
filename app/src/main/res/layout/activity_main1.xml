@@ -88,10 +88,11 @@
                 android:id="@+id/radio_add"
                 style="@style/main_tab_bottom"
                 android:layout_weight="1"
-                android:layout_height="50dp"
-                android:layout_marginBottom="3dp"
                 android:drawableTop="@drawable/footer_add_selector"
-                android:text="" />
+                android:text="add"
+                />
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginBottom="3dp"-->
 
 <!--            <RadioButton-->
 <!--                android:id="@+id/radio_more"-->
@@ -105,7 +106,7 @@
                 style="@style/main_tab_bottom"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/footer_mycenter_selector"
-                android:text="我 的"
+                android:text="mine"
                 android:textColor="@color/black"/>
         </RadioGroup>
     </LinearLayout>

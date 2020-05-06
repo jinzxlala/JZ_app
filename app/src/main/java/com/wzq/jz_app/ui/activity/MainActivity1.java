@@ -111,7 +111,7 @@ public class MainActivity1 extends BaseActivity {
             if (i != 2) {
                 rb[i].setCompoundDrawables(null, drawables[1], null, null);
             } else {
-                Rect r1 = new Rect(0, 0, drawables[1].getMinimumWidth() * 2 / 3, drawables[1].getMinimumHeight() * 2 / 3);
+                Rect r1 = new Rect(0, 0, drawables[1].getMinimumWidth() * 1 / 2, drawables[1].getMinimumHeight() * 1 / 2);
                 //定义一个Rect边界
                 drawables[1].setBounds(r1);
                 rb[i].setCompoundDrawables(null, drawables[1], null, null);

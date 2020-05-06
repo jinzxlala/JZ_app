@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:gravity="center_vertical"
-        android:background="?attr/colorPrimary">
+        android:background="@color/forgivegreen">
         <RelativeLayout
             android:id="@+id/back_layout"
             android:layout_centerVertical="true"
@@ -421,7 +421,7 @@
                 android:textSize="20sp"
                 android:gravity="center"
                 android:onClick="onClick"
-                android:background="?attr/colorPrimary"
+                android:background="@color/forgivegreen"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>

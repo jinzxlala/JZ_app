@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="同步数据"
+                    android:text="Synchronize Data"
                     android:textColor="@color/black"
                     android:textSize="14dp"
                     android:gravity="center_vertical"
@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="编辑资料"
+                    android:text="Edit User Info"
                     android:textColor="@color/black"
                     android:textSize="14dp"
                     android:layout_marginLeft="15dp"
@@ -132,7 +132,7 @@
                     android:layout_toEndOf="@+id/img4"
                     android:layout_toRightOf="@+id/img4"
                     android:gravity="center_vertical"
-                    android:text="主   题"
+                    android:text="Theme"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
@@ -168,7 +168,7 @@
                     android:layout_height="25dp"
                     android:textColor="@color/black"
                     android:textSize="14dp"
-                    android:text="账单分类"
+                    android:text="Edit Bill Type"
                     android:gravity="center_vertical"
                     android:layout_toEndOf="@+id/img6"
                     android:layout_toRightOf="@+id/img6"
@@ -207,7 +207,7 @@
                     android:layout_height="25dp"
                     android:textColor="@color/black"
                     android:textSize="14dp"
-                    android:text="导出账单"
+                    android:text="Export Bills"
                     android:gravity="center_vertical"
                     android:layout_toEndOf="@+id/img9"
                     android:layout_toRightOf="@+id/img9"
@@ -246,7 +246,7 @@
                     android:layout_height="25dp"
                     android:textColor="@color/black"
                     android:textSize="14dp"
-                    android:text="设   置"
+                    android:text="Settings"
                     android:gravity="center_vertical"
                     android:layout_toEndOf="@+id/img3"
                     android:layout_toRightOf="@+id/img3"
@@ -288,7 +288,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="关于APP"
+                    android:text="About..."
                     android:textColor="@color/black"
                     android:textSize="14dp"
                     android:gravity="center_vertical"

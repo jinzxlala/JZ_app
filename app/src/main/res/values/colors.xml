@@ -54,6 +54,7 @@
 
     <color name="green">#008000</color> <!-- 绿色 -->
     <color name="darkgreen">#006400</color> <!-- 暗绿色 -->
+    <color name="forgivegreen">#4CAF50</color> <!-- 原谅绿 -->
 
     <!--aboutActivity字体颜色-->
     <color name="material_grey_100">#fff5f5f5</color>

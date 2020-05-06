@@ -186,25 +186,25 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         super.initClick();
 
         //监听菜单头部点击事件
-        drawerHeader.setOnClickListener(v -> {
-            if (currentUser == null) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.putExtra("exit", "1");
-                startActivity(intent);
-                EventBus.getDefault().post("finish");
-            } else {
-                toChooseImg();
-            }
-        });
-
-        //监听设置主题等
-        editor.setOnClickListener(this);
-        snyc.setOnClickListener(this);
-        setting.setOnClickListener(this);
-        theme.setOnClickListener(this);
-        about.setOnClickListener(this);
-        countClass.setOnClickListener(this);
-        nav_outexcle.setOnClickListener(this);
+//        drawerHeader.setOnClickListener(v -> {
+//            if (currentUser == null) {
+//                Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                intent.putExtra("exit", "1");
+//                startActivity(intent);
+//                EventBus.getDefault().post("finish");
+//            } else {
+//                toChooseImg();
+//            }
+//        });
+//
+//        //监听设置主题等
+//        editor.setOnClickListener(this);
+//        snyc.setOnClickListener(this);
+//        setting.setOnClickListener(this);
+//        theme.setOnClickListener(this);
+//        about.setOnClickListener(this);
+//        countClass.setOnClickListener(this);
+//        nav_outexcle.setOnClickListener(this);
 
     }
 
@@ -427,8 +427,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             Glide.with(getActivity()).load(currentUser.getImage()).apply(requestOptions).into(drawerIv);
 
         } else {
-            drawerTvAccount.setText("账号");
-            drawerTvMail.setText("点我登录");
+            drawerTvAccount.setText("Account");
+            drawerTvMail.setText("Click to Login");
         }
     }
 

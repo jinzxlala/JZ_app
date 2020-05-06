@@ -2,7 +2,7 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="?attr/colorPrimary"
+    android:background= "@color/forgivegreen"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -65,19 +65,19 @@
 
         <View android:layout_width="1dp"
             android:layout_height="41dp"
-            android:background="#DCDCDC">
+            android:background="@color/forgivegreen">
         </View>
 
 
         <LinearLayout
             android:id="@+id/top_ll_out"
-            android:layout_weight="1.5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"
+            android:layout_height="30dp"
+            android:layout_weight="1.5"
             android:orientation="vertical"
-          >
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,24 +87,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Expenditure"
                     android:layout_marginLeft="2dp"
+                    android:singleLine="true"
+                    android:text="Expenditure"
                     android:textColor="@color/textWhite"
-                    android:textSize="14sp"
-                    android:singleLine="true"/>
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/t_outcome"
-                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
                 android:text="0.00"
                 android:textColor="@color/textWhite"
-                android:textSize="15sp"
-                android:singleLine="true"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -150,7 +150,7 @@
 
     <View android:layout_width="1dp"
         android:layout_height="41dp"
-        android:background="#DCDCDC">
+        android:background="@color/forgivegreen">
     </View>
 
     <LinearLayout
